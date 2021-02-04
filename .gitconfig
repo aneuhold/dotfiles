@@ -1,0 +1,12 @@
+[user]
+	name = Anton G Neuhold Jr
+	email = agneuhold@gmail.com
+	signingkey = B3FDE6DD83D53823
+[core]
+	autocrlf = input
+	editor = vim
+[commit]
+	gpgsign = true
+	template = /Users/aneuhold/.gitmessage
+[gpg]
+	program = gpg

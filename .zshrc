@@ -1,3 +1,4 @@
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -111,6 +112,9 @@ export PS1="%F{10}%n%f@%F{14}%c%f:"
 
 # Add to the PATH
 PATH=$PATH:/Users/aneuhold/Library/Python/3.7/bin
+
+# GPG Signing
+export GPG_TTY=$(tty)
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/aneuhold/.sdkman"

@@ -25,8 +25,6 @@
 # Swapfiles (sigh)
 .zsh/*.swp
 
-# Git aliases, identification info
-!.gitconfig
 # The gitignore of this repository itself (!)
 !.gitignore
 # My global Git excludes file (acts as a global .gitignore)

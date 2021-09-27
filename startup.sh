@@ -9,12 +9,18 @@ setup_mac() {
   else
     echo "$RED_ICON This machine does not have homebrew installed..."
     echo "Installing homebrew now..."
-    
+
   fi
 }
 
 mac_has_homebrew() {
-  local has_homebrew="true"
+  # Might be able to find a better way to see if homebrew is installed in the
+  # future
+  if [[ $(which brew) == *"brew"* ]]; then
+    local has_homebrew="true"
+  else
+    local has_homebrew="false"
+  fi
   echo "$has_homebrew"
 }
 

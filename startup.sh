@@ -16,7 +16,7 @@ setup_mac() {
     echo "$GREEN_ICON This machine does have node installed..."
   else
     echo "$RED_ICON This machine does not have node installed..."
-    setup_node
+    mac_setup_node
   fi
 }
 
@@ -58,8 +58,13 @@ setup_homebrew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 }
 
-setup_node() {
+mac_setup_node() {
   echo "Setting up node..."
+  echo $(brew install node)
+}
+
+setup_scripts_area() {
+  echo "Setting up script area..."
 }
 
 # If this is running on a mac
@@ -67,6 +72,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "This is running on a mac... Executing appropriate commands..."
   setup_mac
 else
-  echo "Unknown OSTYPE... Please add a command for this machine in the startup.sh script."
+  echo "$RED_ICON Unknown OSTYPE... Please add a command for this machine in the startup.sh script."
 fi
 

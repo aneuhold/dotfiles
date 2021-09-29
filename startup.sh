@@ -2,6 +2,7 @@
 echo "Running startup script..."
 GREEN_ICON=✅
 RED_ICON=🔴
+MAIN_SCRIPTS_PKG_NAME="@aneuhold/main_scripts"
 
 setup_mac() {
   if [[ $(has_command "brew") == "true" ]]; then
@@ -17,6 +18,13 @@ setup_mac() {
   else
     echo "$RED_ICON This machine does not have node installed..."
     mac_setup_node
+  fi
+
+  # Check if the main scripts are installed
+  if [[ -z $(npm list -g | grep $MAIN_SCRIPTS_PKG_NAME) ]]; then
+    install_main_scripts
+  else 
+    echo "$MAIN_SCRIPTS_PKG_NAME already installed. Skipping..."
   fi
 }
 
@@ -42,17 +50,6 @@ update_homebrew() {
   echo $(brew upgrade)
 }
 
-mac_has_homebrew() {
-  # Might be able to find a better way to see if homebrew is installed in the
-  # future
-  if [[ $(which brew) == *"brew"* ]]; then
-    local has_homebrew="true"
-  else
-    local has_homebrew="false"
-  fi
-  echo "$has_homebrew"
-}
-
 setup_homebrew() {
   echo "Installing homebrew now..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -63,8 +60,9 @@ mac_setup_node() {
   echo $(brew install node)
 }
 
-setup_scripts_area() {
-  echo "Setting up script area..."
+install_main_scripts() {
+  echo "Installing the main scripts..."
+
 }
 
 # If this is running on a mac

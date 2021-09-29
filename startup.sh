@@ -2,19 +2,19 @@
 echo "Running startup script..."
 GREEN_ICON=✅
 RED_ICON=🔴
-MAIN_SCRIPTS_PKG_NAME="@aneuhold/main_scripts"
+MAIN_SCRIPTS_PKG_NAME="@aneuhold/main-scripts"
 
 setup_mac() {
   if [[ $(has_command "brew") == "true" ]]; then
-    echo "$GREEN_ICON This machine does have homebrew installed..."
+    echo "$GREEN_ICON This machine does have homebrew installed."
   else
-    echo "$RED_ICON This machine does not have homebrew installed..."
+    echo "$RED_ICON This machine does not have homebrew installed."
     setup_homebrew
   fi
   update_homebrew
 
   if [[ $(has_command "node") == "true" ]]; then
-    echo "$GREEN_ICON This machine does have node installed..."
+    echo "$GREEN_ICON This machine does have node installed."
   else
     echo "$RED_ICON This machine does not have node installed..."
     mac_setup_node
@@ -22,9 +22,11 @@ setup_mac() {
 
   # Check if the main scripts are installed
   if [[ -z $(npm list -g | grep $MAIN_SCRIPTS_PKG_NAME) ]]; then
+    echo "$RED_ICON $MAIN_SCRIPTS_PKG_NAME is not installed."
     install_main_scripts
   else 
-    echo "$MAIN_SCRIPTS_PKG_NAME already installed. Skipping..."
+    echo "$GREEN_ICON $MAIN_SCRIPTS_PKG_NAME already installed."
+    echo "Checking for updates to $MAIN_SCRIPTS_PKG_NAME..."
   fi
 }
 
@@ -61,8 +63,8 @@ mac_setup_node() {
 }
 
 install_main_scripts() {
-  echo "Installing the main scripts..."
-
+  echo "Installing $MAIN_SCRIPTS_PKG_NAME...";
+  npm i -g $MAIN_SCRIPTS_PKG_NAME;
 }
 
 # If this is running on a mac

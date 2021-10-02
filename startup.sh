@@ -52,7 +52,7 @@ setup_mac() {
 #
 # Returns a string either "true" or "false"
 needs_main_scripts_update() {
-  if [[ -z $(npm outdated -g $MAIN_SCRIPTS_PKG_NAME) ]]; then
+  if [[ -n $(npm outdated -g $MAIN_SCRIPTS_PKG_NAME) ]]; then
     echo "true"
   else
     echo "false"

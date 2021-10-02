@@ -4,6 +4,9 @@
 # The gitignore of this repository itself
 !.gitignore
 
+# Global gitconfig, which should share settings among all machines it seems
+!.gitconfig
+
 # Vim settings
 !.vimrc
 

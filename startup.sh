@@ -46,6 +46,8 @@ setup_mac() {
       echo "$GREEN_ICON $MAIN_SCRIPTS_PKG_NAME is up to date."
     fi
   fi
+
+  echo "$GREEN_ICON Done!";
 }
 
 # Checks to see if the main scripts package needs to be updated

@@ -81,8 +81,23 @@ function Initialize-Windows {
   $hasMainScripts = Has-Main-Scripts;
   if ("$hasMainScripts" -eq "true") {
     Write-Host "$GREEN_ICON This machine does have $MAIN_SCRIPTS_PKG_NAME installed.";
-    
+    Write-Host "Checking for updates to $MAIN_SCRIPTS_PKG_NAME...";
+    $needsUpdate = Needs-Main-Scripts-Update
+    if ($needsUpdate -eq "true") {
+      Write-Host "$RED_ICON $MAIN_SCRIPTS_PKG_NAME is outdated."
+      Write-Host "Updating $MAIN_SCRIPTS_PKG_NAME and all global packages...";
+
+      # As of 9/30/2021 evidently updating just a single package deletes 
+      # all packages. Really weird.
+      npm update -g
+    }
+  } else {
+    Write-Host "$RED_ICON This machine does not have $MAIN_SCRIPTS_PKG_NAME installed."
+    Write-Host "Installing $MAIN_SCRIPTS_PKG_NAME now..."
+    npm i -g $MAIN_SCRIPTS_PKG_NAME;
   }
+
+  Write-Host "$GREEN_ICON Done!"
 }
 
 

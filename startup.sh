@@ -27,6 +27,13 @@ setup_mac() {
     mac_setup_npm
   fi
 
+  if [[ $(has_command "az") == "true" ]]; then
+    echo "$GREEN_ICON This machine does have the Azure CLI installed."
+  else
+    echo "$RED_ICON This machine does not have the Azure CLI installed..."
+    mac_setup_azure_cli
+  fi
+
   # Check if the main scripts are installed
   if [[ -z $(npm list -g | grep $MAIN_SCRIPTS_PKG_NAME) ]]; then
     echo "$RED_ICON $MAIN_SCRIPTS_PKG_NAME is not installed."
@@ -66,7 +73,7 @@ needs_main_scripts_update() {
 has_command() {
   # Might be able to find a better way to see if commands are installed in the
   # future
-  if [[ $(which $1) == *"$1"* ]]; then
+  if [[ $(which $1) == *"/$1"* ]]; then
     local has_cmd="true"
   else
     local has_cmd="false"
@@ -94,6 +101,11 @@ mac_setup_node() {
 mac_setup_npm() {
   echo "Setting up npm..."
   echo $(brew reinstall node)
+}
+
+mac_setup_azure_cli() {
+  echo "Setting up Azure CLI..."
+  echo $(brew install azure-cli)
 }
 
 install_main_scripts() {

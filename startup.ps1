@@ -54,7 +54,8 @@ function Initialize-Windows {
 
   Write-Host "Setting up windows..."
 
-  if (Has-Command choco -eq "true") {
+  $hasCommandChoco = Has-Command choco;
+  if ($hasCommandChoco -eq "true") {
     Write-Host "$GREEN_ICON This machine does have Chocolatey installed.";
   } else {
     Write-Host "$RED_ICON This machine does not have Chocolatey installed."
@@ -62,7 +63,8 @@ function Initialize-Windows {
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
   }
 
-  if (Has-Command node -eq "true") {
+  $hasCommandNode = Has-Command node;
+  if ($hasCommandNode -eq "true") {
     Write-Host "$GREEN_ICON This machine does have node installed.";
   } else {
     Write-Host "$RED_ICON This machine does not have node installed."
@@ -70,7 +72,8 @@ function Initialize-Windows {
     choco install nodejs;
   }
 
-  if (Has-Command npm -eq "true") {
+  $hasCommandNpm = Has-Command npm;
+  if ($hasCommandNpm -eq "true") {
     Write-Host "$GREEN_ICON This machine does have npm installed.";
   } else {
     Write-Host "$RED_ICON This machine does not have npm installed."

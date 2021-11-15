@@ -78,6 +78,14 @@ function Initialize-Windows {
     Exit;
   }
 
+  if (Has-Command az -eq "true") {
+    Write-Host "$GREEN_ICON This machine does have the Azure CLI installed.";
+  } else {
+    Write-Host "$RED_ICON This machine does not have the Azure CLI installed.";
+    Write-Host "Installing Azure CLI now..."
+    choco install azure-cli;
+  }
+
   $hasMainScripts = Has-Main-Scripts;
   if ("$hasMainScripts" -eq "true") {
     Write-Host "$GREEN_ICON This machine does have $MAIN_SCRIPTS_PKG_NAME installed.";
